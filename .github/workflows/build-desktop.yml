@@ -1,0 +1,44 @@
+name: Build MPCHAIN Desktop (macOS Universal AU & VST3 + Windows VST3)
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [ main, master ]
+
+jobs:
+  build-macos:
+    runs-on: macos-14
+    steps:
+      - uses: actions/checkout@v4
+      - name: Configure Universal macOS VST3 + AU (arm64 + x86_64)
+        run: cmake -S . -B build-mac -G Xcode -DCMAKE_OSX_ARCHITECTURES="arm64;x86_64"
+      - name: Build Release VST3 and AU
+        run: cmake --build build-mac --config Release --target MPCHAIN_VST3 MPCHAIN_AU --parallel
+      - name: Ad-hoc sign macOS bundles
+        run: |
+          codesign --force --deep --sign - build-mac/MPCHAIN_artefacts/Release/VST3/MPCHAIN.vst3
+          codesign --force --deep --sign - build-mac/MPCHAIN_artefacts/Release/AU/MPCHAIN.component
+      - name: Stage macOS Universal package
+        run: |
+          mkdir -p dist-mac/macOS-AU dist-mac/macOS-VST3
+          cp -R build-mac/MPCHAIN_artefacts/Release/AU/MPCHAIN.component dist-mac/macOS-AU/
+          cp -R build-mac/MPCHAIN_artefacts/Release/VST3/MPCHAIN.vst3 dist-mac/macOS-VST3/
+      - name: Upload macOS Universal AU + VST3
+        uses: actions/upload-artifact@v4
+        with:
+          name: MPCHAIN-macOS-Universal-AU-VST3
+          path: dist-mac/
+
+  build-windows:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Configure Windows VST3
+        run: cmake -S . -B build-win -G "Visual Studio 17 2022" -A x64
+      - name: Build Release VST3
+        run: cmake --build build-win --config Release --target MPCHAIN_VST3 --parallel
+      - name: Upload Windows VST3
+        uses: actions/upload-artifact@v4
+        with:
+          name: MPCHAIN-Windows-VST3
+          path: build-win/MPCHAIN_artefacts/Release/VST3/MPCHAIN.vst3
