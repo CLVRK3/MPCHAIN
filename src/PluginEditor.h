@@ -85,7 +85,7 @@ private:
     juce::ToggleButton autoBtn_{ "AUTO -14" };
 
     juce::TextButton hq1Btn_{ "1x" }, hq2Btn_{ "2x" }, hq4Btn_{ "4x" }, hq8Btn_{ "8x" };
-    juce::TextButton skinRedBtn_{ "RED" }, skinRetroBtn_{ "RETRO" }, skinGoldBtn_{ "GOLD" };
+    juce::TextButton skinRedBtn_{ "RED" }, skinRetroBtn_{ "RETRO" }, skinBlueBtn_{ "BLUE" };
     juce::ComboBox presetBox_;
 
     using SliderAtt = juce::AudioProcessorValueTreeState::SliderAttachment;

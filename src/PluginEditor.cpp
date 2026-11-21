@@ -30,16 +30,16 @@ MPChainTheme makeTheme(int idx)
             juce::Colour(0xff262b34), juce::Colour(0xffc93c24)
         };
     }
-    // Default 2: MPC Gold (Two-Zone Sunlit Gold + Satin Pearl-Silver Console)
+    // Default 2: Obsidian Blue (Stealth Black primary + Electric Cobalt #1F82FF secondary)
     return {
-        juce::Colour(0xfff3ead2), juce::Colour(0xffd5b676), juce::Colour(0xff6e541c),
-        juce::Colour(0xffb98e3d), juce::Colour(0xfffdfbf4), juce::Colour(0xffd6c39a),
-        juce::Colour(0xfff2f2f3), juce::Colour(0xffd8d8dc), juce::Colour(0xffc2b494),
-        juce::Colour(0xffb5892a), juce::Colour(0xffd84a22), juce::Colour(0xffffffff),
-        juce::Colour(0xff2c2310), juce::Colour(0xff6e5a30), juce::Colour(0xff1d1c19), juce::Colour(0xff64625c),
-        juce::Colour(0xff181715), juce::Colour(0xff3c3932), juce::Colour(0xfffafaf8), juce::Colour(0xffb8b6ae),
-        juce::Colour(0xffc8c4b8), juce::Colour(0xff1b1915), juce::Colour(0xffe4dcc6), juce::Colour(0xffbaa985),
-        juce::Colour(0xff3b2f16), juce::Colour(0xffd63b22)
+        juce::Colour(0xff07090d), juce::Colour(0xff0d1726), juce::Colour(0xff0f3670),
+        juce::Colour(0xff1c6be0), juce::Colour(0xffd6ecff), juce::Colour(0xff2e558a),
+        juce::Colour(0xff12151b), juce::Colour(0xff08090c), juce::Colour(0xff203b63),
+        juce::Colour(0xff1f82ff), juce::Colour(0xffff6a33), juce::Colour(0xffffffff),
+        juce::Colour(0xfff0f6ff), juce::Colour(0xff738eb3), juce::Colour(0xffe6eef9), juce::Colour(0xff6f89ad),
+        juce::Colour(0xff0d1015), juce::Colour(0xff2d3a4f), juce::Colour(0xff364154), juce::Colour(0xff0e1117),
+        juce::Colour(0xff1d2432), juce::Colour(0xff07090d), juce::Colour(0xff161b24), juce::Colour(0xff2a384f),
+        juce::Colour(0xff9ab2d4), juce::Colour(0xff66b3ff)
     };
 }
 
@@ -267,7 +267,7 @@ MPChainAudioProcessorEditor::MPChainAudioProcessorEditor(MPChainAudioProcessor& 
         };
         addAndMakeVisible(b);
     };
-    setupSkin(skinRedBtn_, 0); setupSkin(skinRetroBtn_, 1); setupSkin(skinGoldBtn_, 2);
+    setupSkin(skinRedBtn_, 0); setupSkin(skinRetroBtn_, 1); setupSkin(skinBlueBtn_, 2);
 
     for (int i = 0; i < proc_.getNumPrograms(); ++i)
         presetBox_.addItem(proc_.getProgramName(i), i + 1);
@@ -343,7 +343,7 @@ void MPChainAudioProcessorEditor::applySkin(int skinIdx)
     };
     styleBtn(skinRedBtn_, skinIdx == 0);
     styleBtn(skinRetroBtn_, skinIdx == 1);
-    styleBtn(skinGoldBtn_, skinIdx == 2);
+    styleBtn(skinBlueBtn_, skinIdx == 2);
 
     presetBox_.setColour(juce::ComboBox::backgroundColourId, lnf_.theme.btnBg);
     presetBox_.setColour(juce::ComboBox::outlineColourId,    lnf_.theme.btnBorder);
@@ -661,7 +661,7 @@ void MPChainAudioProcessorEditor::resized()
     hq1Btn_.setBounds(hqX, 9, 44, 24); hq2Btn_.setBounds(hqX + 48, 9, 44, 24);
     hq4Btn_.setBounds(hqX + 96, 9, 44, 24); hq8Btn_.setBounds(hqX + 144, 9, 44, 24);
 
-    skinGoldBtn_.setBounds(w - 72, 9, 58, 24);
+    skinBlueBtn_.setBounds(w - 72, 9, 58, 24);
     skinRetroBtn_.setBounds(w - 134, 9, 58, 24);
     skinRedBtn_.setBounds(w - 196, 9, 58, 24);
 

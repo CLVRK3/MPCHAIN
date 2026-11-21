@@ -61,7 +61,7 @@ juce::AudioProcessorValueTreeState::ParameterLayout MPChainAudioProcessor::creat
     params.push_back(std::make_unique<juce::AudioParameterBool> ("auto_gain","Auto -14", false));
     params.push_back(std::make_unique<juce::AudioParameterFloat>("mix",      "Mix",      juce::NormalisableRange<float>(0.0f, 100.0f, 1.0f), 100.0f));
     params.push_back(std::make_unique<juce::AudioParameterChoice>("hq_os",   "HQ OS",    juce::StringArray{ "1x", "2x", "4x", "8x" }, 1));
-    params.push_back(std::make_unique<juce::AudioParameterChoice>("skin",    "Skin",     juce::StringArray{ "MPC Red", "Retro 3000", "MPC Gold" }, 2));
+    params.push_back(std::make_unique<juce::AudioParameterChoice>("skin",    "Skin",     juce::StringArray{ "MPC Red", "Retro 3000", "Obsidian Blue" }, 2));
     params.push_back(std::make_unique<juce::AudioParameterFloat>("comp_hpf", "Low HPF",  juce::NormalisableRange<float>(0.0f, 240.0f, 1.0f, 0.7f), 150.0f));
 
     return { params.begin(), params.end() };

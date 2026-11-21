@@ -1,6 +1,7 @@
 build/
 build-win/
 build-mac/
+dist-mac/
 _deps/
 .DS_Store
 *.user
