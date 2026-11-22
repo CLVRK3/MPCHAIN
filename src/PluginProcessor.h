@@ -33,6 +33,13 @@ public:
     void getStateInformation(juce::MemoryBlock& destData) override;
     void setStateInformation(const void* data, int sizeInBytes) override;
 
+    // User-saveable preset management (Documents/MIXCHAIN/MPCHAIN/Presets/*.xml)
+    static juce::File getUserPresetDir();
+    juce::StringArray getUserPresetNames() const;
+    bool saveUserPreset(const juce::String& name);
+    bool loadUserPreset(const juce::String& name);
+    bool deleteUserPreset(const juce::String& name);
+
     juce::AudioProcessorValueTreeState apvts;
 
     std::atomic<float> inPeakDb       { -96.0f };
